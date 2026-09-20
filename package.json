@@ -15,15 +15,21 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "dotenv": "^18.0.1",
     "express": "^5.2.1",
+    "luxon": "^3.7.2",
     "nodemon": "^3.1.14",
     "pg": "^8.23.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.8",
     "sequelize-cli": "^6.6.5"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2",
+    "supertest": "^7.2.2"
   }
 }

@@ -1,20 +1,23 @@
 'use strict';
 
-const express = require('express');
 require('dotenv').config();
 
+const app = require('./app');
+const { sequelize } = require('./config/database');
 
 const port = process.env.PORT || 3000;
 
+(async () => {
+  try {
+    await sequelize.authenticate();
 
+    console.log('Database connection established.');
 
-const app = express();
-app.use(express.json());
-
-app.use((req, res) => res.status(404).json({ error: { message: 'Unknown route.' } }));
-
-
-app.listen(port, () => console.log(`App runing on :${port}`));
-
-
-
+    app.listen(port, () => {
+      console.log(`App running on :${port}`);
+    });
+  } catch (err) {
+    console.error('Could not connect to the database:', err.message);
+    process.exit(1);
+  }
+})();
